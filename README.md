@@ -202,6 +202,12 @@ how to use them:
             (map (lambda (i) (* i i))
                 (range n))))
 
+    (defun sum (a)
+        (reduce + a))
+
+    (defun sum-of-even-squares-up-to (n)
+        (sum (even-squares-up-to n)))
+
 
 Arithmetic functions, such as `+` or `mod` take any number of arguments - i.e.
 `(+ 1 2 3)` is equivalent to `(+ (+ 1 2) 3)`. However, predicates such as `=`,
