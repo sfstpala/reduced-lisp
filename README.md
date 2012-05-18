@@ -5,7 +5,8 @@ A dynamic, functional, object oriented programming language. I can't believe it'
 
 ## What is it?
 
-Reduced Lisp is a functional programming language. The syntax is based on the lisp family of languages:
+Reduced Lisp is an interpreted, functional programming language written in Python 3.
+The syntax is based on the lisp family of languages:
 
  - `12` is an integer
  - `3-1j` is a complex number
