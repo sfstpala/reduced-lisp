@@ -20,6 +20,20 @@ Here's a small program:
 
 If you run it, it will print `(integer 144)`.
 
+## Using RL
+
+In order to run the interpreter, simply type `python3 rl.py`.
+If you want to use the gtk extension module, you'll also have to
+install the `python3-gi` package (this is Gtk3 with Gobject-Introspection).
+
+Note: at the moment modules are loaded from the current working direction.
+
+In order to run the gtk example, you'd therefore type
+
+    cd examples/gtk
+    python3 ../../rl.py gtk-example.rl
+
+
 ## Syntax
 
 ### Defining functions
@@ -128,7 +142,7 @@ Classes are lists of expressions. Their namespace will become the class
 namespace, and any function inside will become a method - meaning it will
 receive the instance as the first argument (called `self`).
 
-Attributes of classes can be got using `:`, i.e. `(:my_point x)` will return
+Attributes of classes can be got using `:` and set using `::`, i.e. `(:my_point x)` will return
 the member `x` of the object `my_point`, and `(::my_moint x 12)` will set
 it to 12.
 
