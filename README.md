@@ -120,7 +120,7 @@ The value of this expression will be the value of the last expression in it.
 
 Conditionals works like you'd expect:
 
-    (if (&lt; 4 8)
+    (if (< 4 8)
             (print "four is less than eight")
         (print "eight is less than four.. huh?"))
 
