@@ -152,12 +152,18 @@ the object has been created, and it can be used to set object attributes.
 To create an instance of the class, simply call the class with the arguments
 for `new`. Here's an example:
 
+
     (class Point
 
         (defun new (self x y)
             (begin
                 (::self x x)
                 (::self y y)))
+
+        (defun distance (self other)
+            (sqrt (+
+                (^ (- (:other x) (:self x)) 2)
+                (^ (- (:other y) (:self y)) 2))))
 
         (defun get_x (self)
             (:self x))
@@ -168,8 +174,11 @@ for `new`. Here's an example:
 
     (define (p
         (Point 1.34 7)))
+    (define (q
+        (Point 2.34 8)))
 
-    (print ((:p get_x)))
+
+    (print ((:p distance) q))
 
 
 ### Comments
