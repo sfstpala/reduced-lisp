@@ -42,13 +42,18 @@ stack overflows:
 
     (print (factorial' 2000))
 
+You can just type all of this into a terminal:
+
+    python3 rl.py
+
+
 ## Using RL
 
 In order to run the interpreter, simply type `python3 rl.py`.
 If you want to use the gtk extension module, you'll also have to
 install the `python3-gi` package (this is Gtk3 with Gobject-Introspection).
 
-Note: at the moment modules are loaded from the current working direction.
+Note: at the moment modules are loaded from the current working directory.
 
 In order to run the gtk example, you'd therefore type
 
