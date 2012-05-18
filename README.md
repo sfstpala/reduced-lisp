@@ -21,6 +21,27 @@ Here's a small program:
 
 If you run it, it will print `(integer 144)`.
 
+RL optimizes tail recursion. If you can write a recursive function so that
+the last expression is a recursive call, you don't have to worry about
+stack overflows:
+
+    ; naive factorial, not tail-recursive (will crash for large n)
+    (defun factorial (n)
+        (if (= n 0)
+                1
+            (* n (factorial (- n 1)))))
+
+
+    ; this is a tail-recursive function (won't crash).
+    (defun factorial' (n)
+        (let (f (lambda (n acc)
+            (if (= n 0)
+                    acc
+                (f (- n 1) (* acc n)))))
+            (f n 1)))
+
+    (print (factorial' 2000))
+
 ## Using RL
 
 In order to run the interpreter, simply type `python3 rl.py`.
@@ -100,7 +121,8 @@ Conditionals works like you'd expect:
 
 ### Looping constructs
 
-While loops works similarly:
+You can loop by simply writing a tail recursive function, but there are also
+`while` and `for` loops built in:
 
     (while true
         (print "are we there yet?"))
