@@ -101,9 +101,13 @@ def validate(expr):
         return
     if not expr:
         error("syntax error", "empty expression", expr)
-    if expr[0] == "fun":
-        if len(expr) not in (3, 4):
+    if expr[0] == "defun":
+        if len(expr) != 4:
             error("syntax error", "malformed function", expr)
+        return
+    if expr[0] == "lambda":
+        if len(expr) != 3:
+            error("syntax error", "malformed anonymous function", expr)
         return
     for i in expr:
         validate(i)

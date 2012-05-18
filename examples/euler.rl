@@ -1,10 +1,10 @@
 
-(defun problem_1 (null)
+(defun problem_1 ()
     (reduce + (filter (lambda (i)
             (or (= (mod i 3) 0) (= (mod i 5) 0)))
         (range 1 1000))))
 
-(defun problem_2 (null)
+(defun problem_2 ()
         (begin
             (define (sum 0))
             (define (a 1))
@@ -21,7 +21,7 @@
                     (define (sum (+ sum a))))
                 sum))))
 
-(defun problem_20 (null)
+(defun problem_20 ()
     (let (factorial (lambda (n)
         (let (f (lambda (n acc)
             (if (= n 0)
