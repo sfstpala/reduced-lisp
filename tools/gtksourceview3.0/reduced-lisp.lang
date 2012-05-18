@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+ This file is part of GtkSourceView
+
+ Author: Paolo Borelli <pborelli@gnome.org>
+ Copyright (C) 2006-2007 Paolo Borelli
+
+ Modified by: Stefano Palazzo <stefano-palazzo@ubuntu.com>
+    The original file was scheme.lang by Paolo Barelli
+    Changes (C) 2012
+
+ GtkSourceView is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ GtkSourceView is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public
+ License along with this library; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+-->
+<language id="reduced-lisp" _name="Reduced Lisp" version="2.0" _section="Sources">
+  <metadata>
+    <property name="mimetypes">text/x-reduce-lisp</property>
+    <property name="globs">*.rl</property>
+    <property name="line-comment-start">;</property>
+  </metadata>
+
+  <styles>
+    <style id="comment" _name="Comment" map-to="def:comment"/>
+    <style id="boolean" _name="Boolean" map-to="def:boolean"/>
+    <style id="string" _name="String" map-to="def:string"/>
+    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
+    <style id="function" _name="Function" map-to="def:function"/>
+  </styles>
+
+  <definitions>
+    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
+      <start>;</start>
+      <include>
+        <context ref="def:in-comment"/>
+      </include>
+    </context>
+    <context id="inline-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
+      <start>{</start>
+      <end>}</end>
+      <include>
+        <context ref="def:in-comment"/>
+      </include>
+    </context>
+
+    <context id="string" style-ref="string" class="string" class-disabled="no-spell-check">
+      <start>"</start>
+      <end>"</end>
+      <include>
+        <context ref="def:escape"/>
+      </include>
+    </context>
+
+    <context id="keyword" style-ref="keyword">
+      <keyword>defun</keyword>
+      <keyword>let</keyword>
+      <keyword>define</keyword>
+      <keyword>lambda</keyword>
+      <keyword>begin</keyword>
+      <keyword>class</keyword>
+      <keyword>if</keyword>
+      <keyword>while</keyword>
+      <keyword>assert</keyword>
+      <keyword>for</keyword>
+      <keyword>include</keyword>
+    </context>
+
+    <context id="function" style-ref="function">
+      <keyword>list</keyword>
+      <keyword>set</keyword>
+      <keyword>to\-list</keyword>
+      <keyword>to\-set</keyword>
+      <keyword>integer</keyword>
+      <keyword>hex</keyword>
+      <keyword>oct</keyword>
+      <keyword>bin</keyword>
+      <keyword>boolean</keyword>
+      <keyword>real</keyword>
+      <keyword>complex</keyword>
+      <keyword>str</keyword>
+      <keyword>print</keyword>
+      <keyword>\+</keyword>
+      <keyword>\-</keyword>
+      <keyword>\*</keyword>
+      <keyword>\/</keyword>
+      <keyword>&gt;</keyword>
+      <keyword>=</keyword>
+      <keyword>&lt;</keyword>
+      <keyword>and</keyword>
+      <keyword>or</keyword>
+      <keyword>not</keyword>
+      <keyword>head</keyword>
+      <keyword>tail</keyword>
+      <keyword>get</keyword>
+      <keyword>pop</keyword>
+      <keyword>push</keyword>
+      <keyword>append</keyword>
+      <keyword>extend</keyword>
+      <keyword>length</keyword>
+      <keyword>map</keyword>
+      <keyword>reduce</keyword>
+      <keyword>filter</keyword>
+      <keyword>exit</keyword>
+      <keyword>union</keyword>
+      <keyword>symmetric-difference</keyword>
+      <keyword>difference</keyword>
+      <keyword>intersection</keyword>
+      <keyword>cross-product</keyword>
+      <keyword>range</keyword>
+      <keyword>sqrt</keyword>
+      <keyword>imag</keyword>
+    </context>
+
+    <context id="boolean-value" style-ref="boolean">
+      <match>true|false|null|self</match>
+    </context>
+
+    <context id="reduced-lisp" class="no-spell-check">
+      <include>
+        <context ref="line-comment"/>
+        <context ref="inline-comment"/>
+        <context ref="string"/>
+        <context ref="keyword"/>
+        <context ref="function"/>
+        <context ref="boolean-value"/>
+      </include>
+    </context>
+
+  </definitions>
+</language>
