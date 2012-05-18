@@ -218,8 +218,8 @@ Inline comments are inside of curly braces, line comments begin with a semicolon
 
 These are the built in types:
 
- - `null` (always `ǹull`)
- - boolean (i.e. `true`, `false`)
+ - null (always `null`)
+ - boolean (`true` and `false`)
  - integer (i.e. `12`, `-9`, `0b101101011`)
  - real (i.e. `0.5`, `.3`, `2e-99`)
  - complex (i.e. `1j`, `7.5-4j`)
@@ -268,3 +268,6 @@ For operations on sets, there are five functions pre-defined: union, difference,
 symmetric-difference, intersection, and cross-product. To convert a set
 into a list, use `(to-list myset)`, and `(to-set mylist)` to convert a list
 into a set.
+
+Note: At the moment, language semantics change pretty much every time I make
+a new commit. I'll will try to keep the documentation up to date.
