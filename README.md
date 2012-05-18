@@ -170,3 +170,37 @@ for `new`. Here's an example:
         (Point 1.34 7)))
 
     (print ((:p get_x)))
+
+
+### Comments
+
+Inline comments are inside of curly braces, line comments begin with a semicolon.
+
+
+## Types
+
+These are the built in types:
+
+ - `null`
+ - boolean (i.e. `true`)
+ - integer (i.e. `12`)
+ - real (i.e. `0.5`)
+ - complex (i.e. `0+1j`)
+ - list (i.e. `(list 1 2 3 4)`)
+ - set (i.e. `(set 1 2 3 4)`)
+ - functions (i.e. `(lambda (x) x)`)
+
+### Built-in Functions
+
+RL comes with loads of built-in functions. Type `(help "functions")` in
+the interactive prompt to get a list of them. Here's just one example on
+how to use them:
+
+    (defun even-squares-up-to (n)
+        ; print the even squares of all numbers up to n
+        (filter (lambda (j) (= (mod j 2) 0))
+            (map (lambda (i) (* i i))
+                (range n))))
+
+
+(define squares-to-100

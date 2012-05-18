@@ -163,6 +163,7 @@ default_var = {
     "*": reduced(lambda a, b: type(a)(a * b)),
     "^": reduced(lambda a, b: type(a)(a ** b)),
     "/": reduced(lambda a, b: type(a)(a / b)),
+    "mod": reduced(lambda a, b: type(a)(a % b)),
     "<": lambda a, b: TrueObj() if (a < b) else FalseObj(),
     "=": lambda a, b: TrueObj() if (a == b) else FalseObj(),
     ">": lambda a, b: TrueObj() if (a > b) else FalseObj(),
@@ -242,10 +243,11 @@ class RealObj (Object, float):
 class ComplexObj (Object, complex):
 
     def __repr__(self):
-        return "(complex {})".format(complex.__repr__(self)[1:-1])
+        return "(complex {})".format(
+            complex.__repr__(self).lstrip("(").rstrip(")"))
 
     def __str__(self):
-        return complex.__repr__(self)[1:-1]
+        return complex.__repr__(self).lstrip("(").rstrip(")")
 
 
 class ListObj (Object, tuple):
