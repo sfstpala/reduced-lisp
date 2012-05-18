@@ -9,4 +9,4 @@
 (define (n (factorial 20000)))
 
 (print (+ "the factorial of 20,000 has "
-    (str (- (length (str n)) 2)) " digits"))
+    (str (length (str n))) " digits"))

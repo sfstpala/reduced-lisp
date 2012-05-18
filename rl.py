@@ -122,8 +122,19 @@ def reduce(fn, i):
     j = i[0]
     for k in i[1:]:
         j = fn(j, k)
-    return j
+    return object_eval(j)
 
+def takewhile(fn, a):
+    for i in a:
+        if fn(i):
+            yield object_eval(i)
+        else:
+            break
+
+def count(n=0):
+    while True:
+        yield IntegerObj(n)
+        n += 1
 
 def f_repr(i):
     if isinstance(i, type(lambda: None)):
@@ -195,8 +206,10 @@ default_var = {
     "append": lambda a, x: ListObj(list(a) + [x]),
     "extend": reduced(lambda a, b: ListObj(a + b)),
     "length": lambda a: IntegerObj(len(a)),
-    "map": lambda fn, a: ListObj([fn(i) for i in a]),
+    "map": map,
     "reduce": reduce,
+    "takewhile": takewhile,
+    "count": count,
     "filter": lambda fn, a: ListObj([i for i in a if fn(i)]),
     "exit": lambda n=0: exit(n),
     "union": reduced(lambda a, b: SetObj(a | b)),
@@ -436,7 +449,7 @@ def evaluate(expr, var=default_var, new={}):
             elif expr[0] == "begin":
                 # (begin (print "hello") (print "world"))
                 for i in expr[1:-1]:
-                    evaluate(i, v)
+                    evaluate(i, var)
                 expr = expr[-1]
             elif expr[0] == ":":
                 o = evaluate(expr[1], v)
@@ -475,6 +488,7 @@ def evaluate(expr, var=default_var, new={}):
             elif expr[0] == "for":
                 # (for i (range 10) (print i))
                 # (for (i j) (zip (range 10) (range 0 20 2)) (print i j))
+                r = NullObj()
                 for i in evaluate(expr[2], v):
                     if isinstance(expr[1], Token):
                         v[expr[1]] = i
