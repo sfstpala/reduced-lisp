@@ -181,13 +181,13 @@ Inline comments are inside of curly braces, line comments begin with a semicolon
 
 These are the built in types:
 
- - `null`
- - boolean (i.e. `true`)
- - integer (i.e. `12`)
- - real (i.e. `0.5`)
- - complex (i.e. `0+1j`)
+ - `null` (always `ǹull`)
+ - boolean (i.e. `true`, `false`)
+ - integer (i.e. `12`, `-9`, `0b101101011`)
+ - real (i.e. `0.5`, `.3`, `2e-99`)
+ - complex (i.e. `1j`, `7.5-4j`)
  - list (i.e. `(list 1 2 3 4)`)
- - set (i.e. `(set 1 2 3 4)`)
+ - set (i.e. `(set)`, `(set 1 2 3 4)`)
  - functions (i.e. `(lambda (x) x)`)
 
 ### Built-in Functions
@@ -203,4 +203,70 @@ how to use them:
                 (range n))))
 
 
-(define squares-to-100
+Arithmetic functions, such as `+` or `mod` take any number of arguments - i.e.
+`(+ 1 2 3)` is equivalent to `(+ (+ 1 2) 3)`. However, predicates such as `=`,
+`and`, `or`, `not` only take two arguments.
+
+The functions `map`, `reduce` and `filter` take a functions as their first
+argument and a list, or set, as their second argument.
+
+List-related functions (head, tail, get, pop, push, append, extend, length)
+always return a new list - since lists are immutable.
+
+    (define (a (list 1 2 3)))
+    (print (pop a 0)) ; will return (list 2 3)
+    (print (push a 4 0)) ; will return (list 4 1 2 3)
+    (assert (= a (list 1 2 3)))
+
+For operations on sets, there are five functions pre-defined: union, difference,
+symmetric-difference, intersection, and cross-product. To convert a set
+into a list, use `(to-list myset)`, and `(to-set mylist)` to convert a list
+into a set.
+
+ - *
+ - +
+ - -
+ - /
+ - &lt;
+ - =
+ - &gt;
+ - ^
+ - and
+ - append
+ - bin
+ - boolean
+ - complex
+ - cross-product
+ - difference
+ - exit
+ - extend
+ - filter
+ - get
+ - head
+ - help
+ - hex
+ - imag
+ - integer
+ - intersection
+ - length
+ - list
+ - map
+ - mod
+ - not
+ - oct
+ - or
+ - pop
+ - print
+ - push
+ - range
+ - real
+ - reduce
+ - set
+ - sqrt
+ - str
+ - symmetric-difference
+ - tail
+ - to-list
+ - to-set
+ - union
+ - zip
