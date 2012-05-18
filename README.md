@@ -250,11 +250,14 @@ Arithmetic functions, such as `+` or `mod` take any number of arguments - i.e.
 `(+ 1 2 3)` is equivalent to `(+ (+ 1 2) 3)`. However, predicates such as `=`,
 `and`, `or`, `not` only take two arguments.
 
-The functions `map`, `reduce` and `filter` take a functions as their first
+The functions `map`, `reduce` and `filter` take a function as their first
 argument and a list, or set, as their second argument.
 
+    (defun add-one (n) (+ n 1))
+    (map add-one (list 1 2 3)) ; returns (list 2 3 4)
+
 List-related functions (head, tail, get, pop, push, append, extend, length)
-always return a new list - since lists are immutable.
+never modify the actual object: lists are immutable.
 
     (define (a (list 1 2 3)))
     (print (pop a 0)) ; will return (list 2 3)
